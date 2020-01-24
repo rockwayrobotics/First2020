@@ -30,7 +30,7 @@ class Robot : public frc::TimedRobot {
   frc::Joystick m_stick{0};
 
   std::string startingColour = "";
-  int halfRotations = 0;
+  int rotations = 0;
   bool onStartingColour = false;
 
   static constexpr auto i2cPort = frc::I2C::Port::kOnboard;
@@ -93,7 +93,7 @@ class Robot : public frc::TimedRobot {
       }
     } else if (startingColour == colour) {
       if (!onStartingColour) {
-        halfRotations++;
+        rotations++;
         onStartingColour = true;
       }
     } else {
@@ -114,7 +114,7 @@ class Robot : public frc::TimedRobot {
     //frc::SmartDashboard::PutBoolean("Yellow is True", colourYellow);
     frc::SmartDashboard::PutString("Colour", colour);
     frc::SmartDashboard::PutString("Starting Colour", startingColour);
-    frc::SmartDashboard::PutNumber("Rotations", (float)halfRotations / 2.0);
+    frc::SmartDashboard::PutNumber("Rotations", (float)rotations / 2.0);
     //frc::SmartDashboard::PutNumber("IR", IR);
 
     /**
