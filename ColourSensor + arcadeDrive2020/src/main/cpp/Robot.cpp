@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include <frc/TimedRobot.h>
-#include <frc/smartdashboard/smartdashboard.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/Joystick.h>
 #include <frc/PWMVictorSPX.h>
 #include <frc/drive/DifferentialDrive.h>
