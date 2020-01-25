@@ -28,7 +28,7 @@ class Robot : public frc::TimedRobot {
   frc::PWMVictorSPX m_leftMotor2{RobotMap.LEFTMOTOR2};
   frc::PWMVictorSPX m_rightMotor{RobotMap.RIGHTMOTOR1};
   frc::PWMVictorSPX m_rightMotor2{RobotMap.RIGHTMOTOR2};
-  frc::PWMVictorSPX m_wheelMotor{RobotMap.WHEELMOTOR};
+  frc::PWMVictorSPX m_winchMotor{RobotMap.WINCHMOTOR};
   frc::DifferentialDrive m_robotDrive{m_leftMotor, m_rightMotor};
   frc::DifferentialDrive m_robotDrive2{m_leftMotor2, m_rightMotor2};
   frc::XboxController m_stick{RobotMap.XBOX};
@@ -146,12 +146,12 @@ class Robot : public frc::TimedRobot {
     // Drive with arcade style
     m_robotDrive.ArcadeDrive(m_stick.GetY(Hand.left), m_stick.GetX(Hand.left));
     m_robotDrive2.ArcadeDrive(m_stick.GetY(Hand.left), m_stick.GetX(Hand.left));
-    m_wheelMotor.Set(m_stick2.GetTwist());
+    m_winchMotor.Set(m_stick.GetY(Hand.right));
     /** if (m_stick2.GetRawButton(1)) {
-      m_wheelMotor.Set(-.7);
+      m_winchMotor.Set(-.7);
     }  else
     {
-      m_wheelMotor.Set(0);
+      m_winchMotor.Set(0);
     }*/
   }
 };

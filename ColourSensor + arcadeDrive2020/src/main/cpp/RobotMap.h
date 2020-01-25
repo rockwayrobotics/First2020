@@ -9,10 +9,10 @@ const struct {
     const int LEFTMOTOR2 = 1;
     const int RIGHTMOTOR1 = 3;
     const int RIGHTMOTOR2 = 4;
-    const int WHEELMOTOR = 5;
+    const int WINCHMOTOR = 5;
 
     // Controllers
-    const int XBOX = 0;
-    const int FLIGHT = 1;
+    const int XBOX = 1;
+    const int FLIGHT = 0;
 } RobotMap;
 #endif
