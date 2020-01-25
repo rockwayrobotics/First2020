@@ -25,9 +25,11 @@ class Robot : public frc::TimedRobot {
   frc::PWMVictorSPX m_leftMotor2{1};
   frc::PWMVictorSPX m_rightMotor{3};
   frc::PWMVictorSPX m_rightMotor2{4};
+  frc::PWMVictorSPX m_wheelMotor{5};
   frc::DifferentialDrive m_robotDrive{m_leftMotor, m_rightMotor};
   frc::DifferentialDrive m_robotDrive2{m_leftMotor2, m_rightMotor2};
   frc::Joystick m_stick{0};
+  frc::Joystick m_stick2{1};
 
   std::string startingColour = "";
   int rotations = 0;
@@ -66,12 +68,12 @@ class Robot : public frc::TimedRobot {
      */
     std::string colour = "";
     bool colourRed = false;
-    if (detectedColor.red > .5) {
+    if (detectedColor.red > .37) {
       colour += "red";
       colourRed = true;
     }
     bool colourBlue = false;
-    if (detectedColor.blue > .4) {
+    if (detectedColor.blue > .3) {
       colour += "blue";
       colourBlue = true;
     }
@@ -105,9 +107,9 @@ class Robot : public frc::TimedRobot {
      * Open Smart Dashboard or Shuffleboard to see the color detected by the 
      * sensor.
      */
-    //frc::SmartDashboard::PutNumber("Red", detectedColor.red);
-    //frc::SmartDashboard::PutNumber("Green", detectedColor.green);
-    //frc::SmartDashboard::PutNumber("Blue", detectedColor.blue);
+    frc::SmartDashboard::PutNumber("Red", detectedColor.red);
+    frc::SmartDashboard::PutNumber("Green", detectedColor.green);
+    frc::SmartDashboard::PutNumber("Blue", detectedColor.blue);
     //frc::SmartDashboard::PutBoolean("Red is True", colourRed);
     //frc::SmartDashboard::PutBoolean("Blue is True", colourBlue);
     //frc::SmartDashboard::PutBoolean("Green is True", colourGreen);
@@ -136,6 +138,7 @@ class Robot : public frc::TimedRobot {
     // Drive with arcade style
     m_robotDrive.ArcadeDrive(m_stick.GetY(), m_stick.GetX());
     m_robotDrive2.ArcadeDrive(m_stick.GetY(), m_stick.GetX());
+    m_wheelMotor.Set(m_stick2.GetTwist());
   }
 };
 
