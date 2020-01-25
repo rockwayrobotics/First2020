@@ -139,6 +139,12 @@ class Robot : public frc::TimedRobot {
     m_robotDrive.ArcadeDrive(m_stick.GetY(), m_stick.GetX());
     m_robotDrive2.ArcadeDrive(m_stick.GetY(), m_stick.GetX());
     m_wheelMotor.Set(m_stick2.GetTwist());
+    /** if (m_stick2.GetRawButton(1)) {
+      m_wheelMotor.Set(-.7);
+    }  else
+    {
+      m_wheelMotor.Set(0);
+    }*/
   }
 };
 
