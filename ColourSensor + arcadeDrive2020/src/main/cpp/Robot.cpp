@@ -12,7 +12,9 @@
 #include <frc/PWMVictorSPX.h>
 #include <frc/drive/DifferentialDrive.h>
 
-#include "rev/ColorSensorV3.h"
+#include <rev/ColorSensorV3.h>
+
+#include "RobotMap.h"
 
 /**
  * This is a simple example to show the values that can be read from the REV
@@ -22,15 +24,15 @@ class Robot : public frc::TimedRobot {
   /**
    * Change the I2C port below to match the connection of your color sensor
    */
-  frc::PWMVictorSPX m_leftMotor{2};
-  frc::PWMVictorSPX m_leftMotor2{1};
-  frc::PWMVictorSPX m_rightMotor{3};
-  frc::PWMVictorSPX m_rightMotor2{4};
-  frc::PWMVictorSPX m_wheelMotor{5};
+  frc::PWMVictorSPX m_leftMotor{RobotMap.LEFTMOTOR1};
+  frc::PWMVictorSPX m_leftMotor2{RobotMap.LEFTMOTOR2};
+  frc::PWMVictorSPX m_rightMotor{RobotMap.RIGHTMOTOR1};
+  frc::PWMVictorSPX m_rightMotor2{RobotMap.RIGHTMOTOR2};
+  frc::PWMVictorSPX m_wheelMotor{RobotMap.WHEELMOTOR};
   frc::DifferentialDrive m_robotDrive{m_leftMotor, m_rightMotor};
   frc::DifferentialDrive m_robotDrive2{m_leftMotor2, m_rightMotor2};
-  frc::XboxController m_stick{0};
-  frc::Joystick m_stick2{1};
+  frc::XboxController m_stick{RobotMap.XBOX};
+  frc::Joystick m_stick2{RobotMap.FLIGHT};
 
   const struct {
     const frc::GenericHID::JoystickHand left = frc::GenericHID::JoystickHand::kLeftHand;
