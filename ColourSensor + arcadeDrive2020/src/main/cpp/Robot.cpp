@@ -21,10 +21,10 @@ class Robot : public frc::TimedRobot {
   /**
    * Change the I2C port below to match the connection of your color sensor
    */
-  frc::PWMVictorSPX m_leftMotor{1};
-  frc::PWMVictorSPX m_leftMotor2{0};
-  frc::PWMVictorSPX m_rightMotor{9};
-  frc::PWMVictorSPX m_rightMotor2{8};
+  frc::PWMVictorSPX m_leftMotor{2};
+  frc::PWMVictorSPX m_leftMotor2{1};
+  frc::PWMVictorSPX m_rightMotor{3};
+  frc::PWMVictorSPX m_rightMotor2{4};
   frc::DifferentialDrive m_robotDrive{m_leftMotor, m_rightMotor};
   frc::DifferentialDrive m_robotDrive2{m_leftMotor2, m_rightMotor2};
   frc::Joystick m_stick{0};
