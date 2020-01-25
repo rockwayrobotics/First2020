@@ -8,6 +8,7 @@
 #include <frc/TimedRobot.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/Joystick.h>
+#include <frc/XboxController.h>
 #include <frc/PWMVictorSPX.h>
 #include <frc/drive/DifferentialDrive.h>
 
@@ -28,8 +29,11 @@ class Robot : public frc::TimedRobot {
   frc::PWMVictorSPX m_wheelMotor{5};
   frc::DifferentialDrive m_robotDrive{m_leftMotor, m_rightMotor};
   frc::DifferentialDrive m_robotDrive2{m_leftMotor2, m_rightMotor2};
-  frc::Joystick m_stick{0};
+  frc::XboxController m_stick{0};
   frc::Joystick m_stick2{1};
+
+  const frc::GenericHID::JoystickHand left = frc::GenericHID::JoystickHand::kLeftHand;
+  const frc::GenericHID::JoystickHand right = frc::GenericHID::JoystickHand::kRightHand;
 
   std::string startingColour = "";
   int rotations = 0;
@@ -136,8 +140,8 @@ class Robot : public frc::TimedRobot {
   }
   void TeleopPeriodic() {
     // Drive with arcade style
-    m_robotDrive.ArcadeDrive(m_stick.GetY(), m_stick.GetX());
-    m_robotDrive2.ArcadeDrive(m_stick.GetY(), m_stick.GetX());
+    m_robotDrive.ArcadeDrive(m_stick.GetY(left), m_stick.GetX(left));
+    m_robotDrive2.ArcadeDrive(m_stick.GetY(left), m_stick.GetX(left));
     m_wheelMotor.Set(m_stick2.GetTwist());
   }
 };
