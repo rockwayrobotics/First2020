@@ -115,16 +115,16 @@ class Robot : public frc::TimedRobot {
      * Open Smart Dashboard or Shuffleboard to see the color detected by the 
      * sensor.
      */
-    frc::SmartDashboard::PutNumber("Red", detectedColor.red);
-    frc::SmartDashboard::PutNumber("Green", detectedColor.green);
-    frc::SmartDashboard::PutNumber("Blue", detectedColor.blue);
+    frc::SmartDashboard::PutNumber("Red value", detectedColor.red);
+    frc::SmartDashboard::PutNumber("Green Value", detectedColor.green);
+    frc::SmartDashboard::PutNumber("Blue value", detectedColor.blue);
     //frc::SmartDashboard::PutBoolean("Red is True", colourRed);
     //frc::SmartDashboard::PutBoolean("Blue is True", colourBlue);
     //frc::SmartDashboard::PutBoolean("Green is True", colourGreen);
     //frc::SmartDashboard::PutBoolean("Yellow is True", colourYellow);
-    frc::SmartDashboard::PutString("Colour", colour);
-    frc::SmartDashboard::PutString("Starting Colour", startingColour);
-    frc::SmartDashboard::PutNumber("Rotations", (float)rotations / 2.0);
+    frc::SmartDashboard::PutString("Current colour", colour);
+    frc::SmartDashboard::PutString("Starting colour", startingColour);
+    frc::SmartDashboard::PutNumber("Current rotations", (float)rotations / 2.0);
     //frc::SmartDashboard::PutNumber("IR", IR);
 
     /**
