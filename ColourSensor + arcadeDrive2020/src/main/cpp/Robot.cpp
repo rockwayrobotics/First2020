@@ -147,12 +147,17 @@ class Robot : public frc::TimedRobot {
     m_robotDrive.ArcadeDrive(m_stick.GetY(Hand.left), m_stick.GetX(Hand.left));
     m_robotDrive2.ArcadeDrive(m_stick.GetY(Hand.left), m_stick.GetX(Hand.left));
     m_winchMotor.Set(m_stick.GetY(Hand.right));
-    /** if (m_stick2.GetRawButton(1)) {
-      m_winchMotor.Set(-.7);
-    }  else
+    /*if (m_stick.GetAButton()) {
+      m_winchMotor.Set(1);
+    }  else if (m_stick.GetXButton())
+    {
+      m_winchMotor.Set(1);
+    } else
     {
       m_winchMotor.Set(0);
     }*/
+    
+    
   }
 };
 
