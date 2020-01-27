@@ -69,6 +69,7 @@ void Robot::TeleopInit() {
   }
   UpdateColourSensor updateColourSensor{&m_colourSensor};
   frc2::CommandScheduler::GetInstance().Schedule(&updateColourSensor);
+  m_colourSensor.SetActive(true);
 }
 
 /**
