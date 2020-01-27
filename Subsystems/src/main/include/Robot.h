@@ -12,6 +12,8 @@
 
 #include "RobotContainer.h"
 
+#include "subsystems/DrivebaseSubsystem.h"
+
 class Robot : public frc::TimedRobot {
  public:
   void RobotInit() override;

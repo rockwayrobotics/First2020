@@ -10,6 +10,18 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 
+#include <frc/XboxController.h>
+#include <frc/Joystick.h>
+
+const struct {
+  frc::GenericHID::JoystickHand left = frc::GenericHID::JoystickHand::kLeftHand;
+  frc::GenericHID::JoystickHand right = frc::GenericHID::JoystickHand::kRightHand;
+} Hand;
+
+DrivebaseSubsystem m_drive;
+frc::XboxController m_stick {RobotMap.XBOX};
+frc::Joystick m_stick2 {RobotMap.FLIGHT};
+
 void Robot::RobotInit() {}
 
 /**
@@ -59,7 +71,9 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  m_drive.Set(m_stick.GetY(Hand.left), m_stick.GetX(Hand.right));
+}
 
 /**
  * This function is called periodically during test mode.
