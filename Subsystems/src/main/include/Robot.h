@@ -13,6 +13,9 @@
 #include "RobotContainer.h"
 
 #include "subsystems/DrivebaseSubsystem.h"
+#include "subsystems/ColourSensorSubsystem.h"
+
+#include "commands/UpdateColourSensor.h"
 
 class Robot : public frc::TimedRobot {
  public:

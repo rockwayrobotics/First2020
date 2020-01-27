@@ -19,6 +19,7 @@ const struct {
 } Hand;
 
 DrivebaseSubsystem m_drive;
+ColourSensorSubsystem m_colourSensor;
 frc::XboxController m_stick {RobotMap.XBOX};
 frc::Joystick m_stick2 {RobotMap.FLIGHT};
 
@@ -66,13 +67,16 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
+  UpdateColourSensor updateColourSensor{&m_colourSensor};
+  frc2::CommandScheduler::GetInstance().Schedule(&updateColourSensor);
 }
 
 /**
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  m_drive.Set(m_stick.GetY(Hand.left), m_stick.GetX(Hand.right));
+  m_drive.Set(-m_stick.GetY(Hand.left), m_stick.GetX(Hand.right));
+  
 }
 
 /**

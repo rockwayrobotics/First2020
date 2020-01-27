@@ -1,11 +1,11 @@
+#pragma once
+
 #include <frc2/command/SubsystemBase.h>
 
 #include <frc/PWMVictorSPX.h>
 #include <frc/drive/DifferentialDrive.h>
 
 #include "RobotMap.h"
-
-#pragma once
 
 class DrivebaseSubsystem : frc2::SubsystemBase {
     public:
