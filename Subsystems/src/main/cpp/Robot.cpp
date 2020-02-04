@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
+#include "RobotMap.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
@@ -13,14 +14,10 @@
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
 
-const struct {
-  frc::GenericHID::JoystickHand left = frc::GenericHID::JoystickHand::kLeftHand;
-  frc::GenericHID::JoystickHand right = frc::GenericHID::JoystickHand::kRightHand;
-} Hand;
+#include "controls/TestControlConfig.h"
 
-DrivebaseSubsystem m_drive;
-frc::XboxController m_stick {RobotMap.XBOX};
-frc::Joystick m_stick2 {RobotMap.FLIGHT};
+frc::XboxController m_stick {RobotMap::Controllers::XBOX};
+frc::Joystick m_stick2 {RobotMap::Controllers::FLIGHT};
 
 void Robot::RobotInit() {}
 
@@ -66,13 +63,18 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
+  m_container.StartColourSensor();
 }
 
 /**
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  m_drive.Set(m_stick.GetY(Hand.left), m_stick.GetX(Hand.left));
+  m_container.Drive(
+    -m_stick.GetY(Controls::DriveAxis[0]),
+    m_stick.GetX(Controls::DriveAxis[1])
+  );
+
 }
 
 /**
