@@ -19,7 +19,14 @@
 frc::XboxController m_stick {RobotMap::Controllers::XBOX};
 frc::Joystick m_stick2 {RobotMap::Controllers::FLIGHT};
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+  #if defined(__linux__)
+    frc::CameraServer::GetInstance()->StartAutomaticCapture();
+#else
+    wpi::errs() << "Vision only available on Linux.\n";
+    wpi::errs().flush();
+#endif
+}
 
 /**
  * This function is called every robot packet, no matter the mode. Use
