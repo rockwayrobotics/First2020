@@ -72,7 +72,7 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  m_drive.Set(m_stick.GetY(Hand.left), m_stick.GetX(Hand.right));
+  m_drive.Set(m_stick.GetY(Hand.left), m_stick.GetX(Hand.left));
 }
 
 /**
