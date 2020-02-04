@@ -1,19 +1,23 @@
-#pragma once
+#ifndef ROBOTMAP
+#define ROBOTMAP
 
 #include <frc/I2C.h>
 
-const struct {
-    // Motors
-    const int LEFTMOTOR1 = 2;
-    const int LEFTMOTOR2 = 1;
-    const int RIGHTMOTOR1 = 3;
-    const int RIGHTMOTOR2 = 4;
-    const int WINCHMOTOR = 5;
-
-    // Controllers
-    const int XBOX = 1;
-    const int FLIGHT = 0;
-
-    // Colour Sensor port
+namespace RobotMap {
+    enum Motors {
+        // Motor ports
+        LEFTMOTOR1 = 1,
+        LEFTMOTOR2 = 2,
+        RIGHTMOTOR1 = 3,
+        RIGHTMOTOR2 = 4,
+        WINCHMOTOR = 5
+    };
+    enum Controllers { 
+        // Controller ports
+        XBOX = 0,
+        FLIGHT = 1
+    };
     const frc::I2C::Port COLOURSENSOR = frc::I2C::Port::kOnboard;
-} RobotMap;
+}
+
+#endif

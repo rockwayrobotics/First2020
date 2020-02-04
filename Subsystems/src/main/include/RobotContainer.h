@@ -5,12 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#ifndef ROBOTCONTAINER
+#define ROBOTCONTAINER
 
 #include <frc2/command/Command.h>
 
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
+
+#include "commands/UpdateColourSensor.h"
+
+#include "subsystems/ColourSensorSubsystem.h"
+#include "subsystems/DrivebaseSubsystem.h"
+
+#include "RobotMap.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -24,11 +32,20 @@ class RobotContainer {
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
+  void StartColourSensor();
+  void StopColourSensor();
+  void Drive(double y, double x);
+  
 
  private:
   // The robot's subsystems and commands are defined here...
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
+  ColourSensorSubsystem m_colourSensor;
+  DrivebaseSubsystem m_drivebase;
+  UpdateColourSensor m_colourSensorUpdater {&m_colourSensor};
 
   void ConfigureButtonBindings();
 };
+
+#endif
