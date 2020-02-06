@@ -5,14 +5,14 @@
 
 #include <rev/ColorSensorV3.h>
 
-#include "../RobotMap.h"
+#include "RobotMap.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 
 class ColourSensorSubsystem : public frc2::SubsystemBase {
     public:
         ColourSensorSubsystem();
         void Update();
-        std::string colour;
+        RobotMap::Colour colour;
         int rotations;
         void SetActive(bool state);
         bool IsActive();
@@ -23,7 +23,7 @@ class ColourSensorSubsystem : public frc2::SubsystemBase {
         const double BLUETHRESHOLD = 0.3;
         const double GREENTHRESHOLD = 0.5;
         const double YELLOWREDTHRESHOLD = 0.3;
-        std::string startingColour;
+        RobotMap::Colour startingColour;
         bool onStartingColour;
         bool m_active;
 };
