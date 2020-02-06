@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
+#include "RobotMap.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
@@ -13,17 +14,19 @@
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
 
-const struct {
-  frc::GenericHID::JoystickHand left = frc::GenericHID::JoystickHand::kLeftHand;
-  frc::GenericHID::JoystickHand right = frc::GenericHID::JoystickHand::kRightHand;
-} Hand;
+#include "controls/TestControlConfig.h"
 
-DrivebaseSubsystem m_drive;
-ColourSensorSubsystem m_colourSensor;
-frc::XboxController m_stick {RobotMap.XBOX};
-frc::Joystick m_stick2 {RobotMap.FLIGHT};
+frc::XboxController m_stick {RobotMap::Controllers::XBOX};
+frc::Joystick m_stick2 {RobotMap::Controllers::FLIGHT};
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+  #if defined(__linux__)
+    frc::CameraServer::GetInstance()->StartAutomaticCapture();
+#else
+    wpi::errs() << "Vision only available on Linux.\n";
+    wpi::errs().flush();
+#endif
+}
 
 /**
  * This function is called every robot packet, no matter the mode. Use
@@ -67,17 +70,18 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
-  UpdateColourSensor updateColourSensor{&m_colourSensor};
-  frc2::CommandScheduler::GetInstance().Schedule(&updateColourSensor);
-  m_colourSensor.SetActive(true);
+  m_container.StartColourSensor();
 }
 
 /**
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  m_drive.Set(-m_stick.GetY(Hand.left), m_stick.GetX(Hand.right));
-  
+  m_container.Drive(
+    -m_stick.GetY(Controls::DriveAxis[0]),
+    m_stick.GetX(Controls::DriveAxis[1])
+  );
+
 }
 
 /**
