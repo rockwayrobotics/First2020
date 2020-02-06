@@ -27,7 +27,7 @@ void ColourSensorSubsystem::Update() {
     } else {
         onStartingColour = false;
     }
-    frc::SmartDashboard::PutString("Colour", colour);
+    frc::SmartDashboard::PutString("Colour ", colour);
 }
 
 void ColourSensorSubsystem::SetActive(bool state) {
