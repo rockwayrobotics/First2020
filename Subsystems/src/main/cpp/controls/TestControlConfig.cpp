@@ -10,9 +10,10 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
     Buttons::LB
         .WhenPressed(ScaleDrive {&drivebase, 0.5})
         .WhenReleased(ScaleDrive {&drivebase, 1});
-    
+    Buttons::RB
+        .WhenPressed(SpinWheel {&wheelSpinner, 0});
     (!Buttons::RB && Buttons::X)
-        .WhenActive(SpinWheel {&wheelSpinner, 1})
+        .WhenActive(SpinWheel {&wheelSpinner, -1})
         .WhenInactive(SpinWheel {&wheelSpinner, 0});
     (Buttons::RB && Buttons::A)
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::GREEN});
