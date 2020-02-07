@@ -7,17 +7,19 @@ ColourSensorSubsystem::ColourSensorSubsystem() {
 void ColourSensorSubsystem::Update() {
     m_currentColour = m_colourSensor.GetColor();
     if (m_currentColour.red > REDTHRESHOLD) {
-        colour = "red";
+        colour = RobotMap::Colour::RED;
     } else if (m_currentColour.blue > BLUETHRESHOLD) {
-        colour = "blue";
+        colour = RobotMap::Colour::BLUE;
     } else if (m_currentColour.green > GREENTHRESHOLD) {
         if (m_currentColour.red > YELLOWREDTHRESHOLD) {
-            colour = "yellow";
+            colour = RobotMap::Colour::YELLOW;
         } else {
-            colour = "green";
+            colour = RobotMap::Colour::GREEN;
         }
+    } else {
+        colour = RobotMap::Colour::NONE;
     }
-    if (startingColour == "" && colour != "") {
+    if (startingColour == RobotMap::Colour::NONE && colour != RobotMap::Colour::NONE) {
         startingColour = colour;
         onStartingColour = true;
     } else if (startingColour == colour) {
@@ -27,7 +29,7 @@ void ColourSensorSubsystem::Update() {
     } else {
         onStartingColour = false;
     }
-    frc::SmartDashboard::PutString("Colour ", colour);
+    frc::SmartDashboard::PutNumber("Colour", colour);
 }
 
 void ColourSensorSubsystem::SetActive(bool state) {

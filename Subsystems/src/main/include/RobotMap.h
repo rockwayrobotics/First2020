@@ -10,7 +10,8 @@ namespace RobotMap {
         LEFTMOTOR2 = 2,
         RIGHTMOTOR1 = 3,
         RIGHTMOTOR2 = 4,
-        WINCHMOTOR = 5
+        WINCHMOTOR = 6,
+        WHEELMOTOR = 5
     };
     enum Controllers { 
         // Controller ports
@@ -18,6 +19,14 @@ namespace RobotMap {
         FLIGHT = 1
     };
     const frc::I2C::Port COLOURSENSOR = frc::I2C::Port::kOnboard;
+    enum Colour {
+        // Colours used for the colour sensor and wheel spinner
+        NONE = 0,
+        RED = 1,
+        BLUE = 2,
+        GREEN = 3,
+        YELLOW = 4
+    };
 }
 
 #endif

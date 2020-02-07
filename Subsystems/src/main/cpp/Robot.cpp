@@ -15,14 +15,18 @@
 #include <frc/Joystick.h>
 
 #include "controls/TestControlConfig.h"
+#include "Controllers.h"
 
-frc::XboxController m_stick {RobotMap::Controllers::XBOX};
-frc::Joystick m_stick2 {RobotMap::Controllers::FLIGHT};
+#include "commands/SpinWheelToColour.h"
+
+#include <wpi/raw_ostream.h>
+#include <cameraserver/CameraServer.h>
+
 
 void Robot::RobotInit() {
  /* #if defined(__linux__)
     frc::CameraServer::GetInstance()->StartAutomaticCapture();
-#else
+  #else
     wpi::errs() << "Vision only available on Linux.\n";
     wpi::errs().flush();
 #endif*/
@@ -78,11 +82,13 @@ void Robot::TeleopInit() {
  */
 void Robot::TeleopPeriodic() {
   m_container.Drive(
-    -m_stick.GetY(Controls::DriveAxis[0]),
-    m_stick.GetX(Controls::DriveAxis[1])
+    -Controllers::xbox.GetY(Controls::DriveAxis[0]),
+    Controllers::xbox.GetX(Controls::DriveAxis[1])
   );
 
 }
+
+void Robot::TestInit() {}
 
 /**
  * This function is called periodically during test mode.

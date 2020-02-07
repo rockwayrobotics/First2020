@@ -17,6 +17,7 @@
 
 #include "subsystems/ColourSensorSubsystem.h"
 #include "subsystems/DrivebaseSubsystem.h"
+#include "subsystems/WheelSpinnerSubsystem.h"
 
 #include "RobotMap.h"
 
@@ -44,6 +45,8 @@ class RobotContainer {
   ColourSensorSubsystem m_colourSensor;
   DrivebaseSubsystem m_drivebase;
   UpdateColourSensor m_colourSensorUpdater {&m_colourSensor};
+  WheelSpinnerSubsystem m_wheelSpinner;
+  
 
   void ConfigureButtonBindings();
 };
