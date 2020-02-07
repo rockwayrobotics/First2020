@@ -23,7 +23,7 @@ class DrivebaseSubsystem : frc2::SubsystemBase {
         frc::DifferentialDrive m_drive2 {m_leftMotor2, m_rightMotor2};
         double m_y;
         double m_x;
-        double m_scale = 0;
+        double m_scale = 1;
 };
 
 #endif
