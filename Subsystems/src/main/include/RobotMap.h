@@ -4,14 +4,16 @@
 #include <frc/I2C.h>
 
 namespace RobotMap {
-    enum Motors {
+    enum Ports {
         // Motor ports
         LEFTMOTOR1 = 1,
         LEFTMOTOR2 = 2,
         RIGHTMOTOR1 = 3,
         RIGHTMOTOR2 = 4,
         WINCHMOTOR = 6,
-        WHEELMOTOR = 5
+        WHEELMOTOR = 5,
+        HOPPERFORWARD = 7,
+        HOPPERREVERSE = 8
     };
     enum Controllers { 
         // Controller ports
