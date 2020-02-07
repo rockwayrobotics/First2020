@@ -15,10 +15,10 @@ class DrivebaseSubsystem : frc2::SubsystemBase {
         void Periodic() override;
         void SetScale(double scale);
     private:
-        frc::PWMVictorSPX m_leftMotor1 {RobotMap::Motors::LEFTMOTOR1};
-        frc::PWMVictorSPX m_leftMotor2 {RobotMap::Motors::LEFTMOTOR2};
-        frc::PWMVictorSPX m_rightMotor1 {RobotMap::Motors::RIGHTMOTOR1};
-        frc::PWMVictorSPX m_rightMotor2 {RobotMap::Motors::RIGHTMOTOR2};
+        frc::PWMVictorSPX m_leftMotor1 {RobotMap::Ports::LEFTMOTOR1};
+        frc::PWMVictorSPX m_leftMotor2 {RobotMap::Ports::LEFTMOTOR2};
+        frc::PWMVictorSPX m_rightMotor1 {RobotMap::Ports::RIGHTMOTOR1};
+        frc::PWMVictorSPX m_rightMotor2 {RobotMap::Ports::RIGHTMOTOR2};
         frc::DifferentialDrive m_drive1 {m_leftMotor1, m_rightMotor1};
         frc::DifferentialDrive m_drive2 {m_leftMotor2, m_rightMotor2};
         double m_y;
