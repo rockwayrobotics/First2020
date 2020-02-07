@@ -12,9 +12,24 @@
 #include <frc/PWMVictorSPX.h>
 #include <frc/drive/DifferentialDrive.h>
 
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardLayout.h>
+#include <frc/shuffleboard/ShuffleboardTab.h>
+
 #include <rev/ColorSensorV3.h>
 
 #include "RobotMap.h"
+
+#include <cameraserver/CameraServer.h>
+#include <frc/TimedRobot.h>
+#include <wpi/raw_ostream.h>
+
+/**
+ * Uses the CameraServer class to automatically capture video from a USB webcam
+ * and send it to the FRC dashboard without doing any vision processing. This is
+ * the easiest way to get camera images to the dashboard. Just add this to the
+ * RobotInit() method in your program.
+ */
 
 /**
  * This is a simple example to show the values that can be read from the REV
@@ -53,6 +68,14 @@ class Robot : public frc::TimedRobot {
   rev::ColorSensorV3 m_colorSensor{i2cPort};
 
  public:
+  void RobotInit() override {
+#if defined(__linux__)
+    frc::CameraServer::GetInstance()->StartAutomaticCapture();
+#else
+    wpi::errs() << "Vision only available on Linux.\n";
+    wpi::errs().flush();
+#endif
+  }
   void RobotPeriodic() {
     /**
      * The method GetColor() returns a normalized color value from the sensor and can be
@@ -144,20 +167,38 @@ class Robot : public frc::TimedRobot {
   }
   void TeleopPeriodic() {
     // Drive with arcade style
-    m_robotDrive.ArcadeDrive(m_stick.GetY(Hand.left), m_stick.GetX(Hand.left));
-    m_robotDrive2.ArcadeDrive(m_stick.GetY(Hand.left), m_stick.GetX(Hand.left));
-    m_winchMotor.Set(m_stick.GetY(Hand.right));
+    m_robotDrive.ArcadeDrive(-m_stick.GetY(Hand.left), m_stick.GetX(Hand.left));
+    m_robotDrive2.ArcadeDrive(-m_stick.GetY(Hand.left), m_stick.GetX(Hand.left));
+    m_winchMotor.Set((m_stick.GetY(Hand.right)));
+    /*if (m_stick.GetRawButton(13)) {
+      m_rightMotor.Set(.8);
+      m_rightMotor2.Set(.8);
+      m_leftMotor.Set(0);
+      m_leftMotor2.Set(0);
+    }
+    else if (m_stick.GetRawButton(14)) {
+      m_leftMotor.Set(.8);
+      m_leftMotor2.Set(.8);
+      m_rightMotor.Set(0);
+      m_rightMotor2.Set(0);
+    }*/
+    
     /*if (m_stick.GetAButton()) {
-      m_winchMotor.Set(1);
+      m_winchMotor.Set(.15);
     }  else if (m_stick.GetXButton())
     {
-      m_winchMotor.Set(1);
+      m_winchMotor.Set(-.15);
     } else
     {
       m_winchMotor.Set(0);
     }*/
-    
-    
+
+    if (m_stick.GetAButton()) {
+      //c->SetClosedLoopControl(true);
+    } else
+    {
+      //c->SetClosedLoopControl(false);
+    }
   }
 };
 

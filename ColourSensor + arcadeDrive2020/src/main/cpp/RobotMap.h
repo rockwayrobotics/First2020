@@ -12,7 +12,7 @@ const struct {
     const int WINCHMOTOR = 5;
 
     // Controllers
-    const int XBOX = 1;
-    const int FLIGHT = 0;
+    const int XBOX = 0;
+    const int FLIGHT = 1;
 } RobotMap;
 #endif
