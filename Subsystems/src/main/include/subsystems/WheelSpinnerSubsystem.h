@@ -14,7 +14,7 @@ class WheelSpinnerSubsystem : public frc2::SubsystemBase {
         void Spin(double spinPow);
         void Stop();
     private:
-        frc::PWMTalonSRX m_motor {RobotMap::Ports::WHEELMOTOR};
+        frc::PWMTalonSRX m_motor {RobotMap::Motors::WHEELMOTOR};
         double m_spinPow;
         frc2::Command* currentCommand = nullptr;
 };

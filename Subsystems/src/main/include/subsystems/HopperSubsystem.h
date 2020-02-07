@@ -14,7 +14,7 @@ class HopperSubsystem : public frc2::SubsystemBase {
         frc::DoubleSolenoid::Value GetState();
     private:
         frc::DoubleSolenoid m_solenoid {
-            RobotMap::Ports::HOPPERFORWARD,
-            RobotMap::Ports::HOPPERREVERSE
+            RobotMap::Pneumatics::HOPPERFORWARD,
+            RobotMap::Pneumatics::HOPPERREVERSE
         };
 };
