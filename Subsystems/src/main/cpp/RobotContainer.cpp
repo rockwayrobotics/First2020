@@ -18,7 +18,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  Controls::ConfigureButtonBindings(m_drivebase, m_wheelSpinner, m_colourSensor);
+  Controls::ConfigureButtonBindings(m_drivebase, m_wheelSpinner, m_colourSensor, m_hopper);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
