@@ -3,6 +3,8 @@
 #include "commands/ScaleDrive.h"
 #include "commands/SpinWheel.h"
 #include "commands/SpinWheelToColour.h"
+#include <frc2/command/InstantCommand.h>
+#include "subsystems/HopperSubsystem.h"
 
 void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinnerSubsystem& wheelSpinner, ColourSensorSubsystem& colourSensor) {
     // Configure button bindings here
@@ -23,4 +25,8 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::BLUE});
     (Buttons::RB && Buttons::Y)
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::YELLOW});
+    Buttons::LT
+        .WhenActive(
+            frc2::InstantCommand{HopperSubsystem{}.Load(), {}};
+        );
 }
