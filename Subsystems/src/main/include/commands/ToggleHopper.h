@@ -12,6 +12,5 @@ class ToggleHopper : public frc2::CommandHelper<frc2::CommandBase, ToggleHopper>
         bool IsFinished();
     private:
         HopperSubsystem* m_hopper;
-        bool m_dumped;
         bool m_finished;
 };
