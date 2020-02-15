@@ -1,17 +1,20 @@
 #include "commands/AutonomousCode.h"
+#include "commands/Driveth.h"
 
-Autonomous::Autonomous(RobotContainer* cont) {
-    m_cont = cont;
-    m_cont->Drive(1,1);
+Autonomous::Autonomous(DrivebaseSubsystem* Drbase) {
+    m_Drbase = Drbase;
 }
 
 void Autonomous::Initialize() {
-
+    finished = false;
 }
 
-void Autonomous::Execute() {}
+void Autonomous::Execute() {
+    frc2::CommandScheduler::GetInstance().Schedule(new Driveth{m_Drbase});
+    
+}
+
 
 bool Autonomous::IsFinished() {
     return finished;
 }
-//This should eventually lol on that with the yeet skeet cheat

@@ -1,10 +1,14 @@
+#pragma once
+
+
+#include "subsystems/DrivebaseSubsystem.h"
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/DrivebaseSubsystem.h"
+#include <frc2/command/Command.h>
 
-class Autonomous : public frc2::CommandHelper<frc2::CommandBase, Autonomous> {
+class Driveth : public frc2::CommandHelper<frc2::CommandBase, Driveth>{
     public:
-        Autonomous(DrivebaseSubsystem* Drbase);
+        Driveth(DrivebaseSubsystem* Drbase);
         void Initialize() override;
         void Execute() override;
         bool IsFinished() override;
