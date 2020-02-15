@@ -12,8 +12,8 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
     // Configure button bindings here
     
     Buttons::LB
-        .WhenPressed(ScaleDrive {&drivebase, 0.5})
-        .WhenReleased(ScaleDrive {&drivebase, 1});
+        .WhenPressed(ScaleDrive {&drivebase, 1})
+        .WhenReleased(ScaleDrive {&drivebase, 0.5});
     Buttons::RB
         .WhenPressed(SpinWheel {&wheelSpinner, 0});
     (!Buttons::RB && Buttons::X)
