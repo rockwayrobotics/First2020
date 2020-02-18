@@ -29,7 +29,7 @@ namespace RobotMap {
     };
     enum Pneumatics {
         HOPPERFORWARD = 0,
-        HOPPERREVERSE = 3
+        HOPPERREVERSE = 1
     };
 }
 
