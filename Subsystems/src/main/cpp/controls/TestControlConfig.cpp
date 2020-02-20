@@ -7,17 +7,37 @@
 #include <frc2/command/InstantCommand.h>
 #include "commands/Driveth.h"
 
+#include <iostream>
+
 void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinnerSubsystem& wheelSpinner, ColourSensorSubsystem& colourSensor, HopperSubsystem& hopper) {
     // Configure button bindings here
     
     Buttons::LB
-        .WhenPressed(ScaleDrive {&drivebase, 0.5})
-        .WhenReleased(ScaleDrive {&drivebase, 1});
+        .WhenPressed(ScaleDrive {&drivebase, 1})
+        .WhenReleased(ScaleDrive {&drivebase, 0.5});
     Buttons::RB
         .WhenPressed(SpinWheel {&wheelSpinner, 0});
     (!Buttons::RB && Buttons::X)
         .WhenActive(SpinWheel {&wheelSpinner, -1})
         .WhenInactive(SpinWheel {&wheelSpinner, 0});
+
+    (!Buttons::RB && Buttons::Y)
+    .WhenActive([&]() {
+        hopper.Dump();
+    }, {&hopper});
+    (!Buttons::RB && Buttons::L)
+    .WhenActive([&]() {
+        hopper.Load();
+    }, {&hopper});
+    (!Buttons::RB && Buttons::R)
+    .WhenActive([&]() {
+        hopper.Off();
+    }, {&hopper});
+    (!Buttons::RB && Buttons::B)
+    .WhenActive([&]() {
+        std::cout << "Solenoid state: " << hopper.GetState() << "\n";
+    }, {&hopper});
+
     (!Buttons::RB && Buttons::A)
         .WhenActive(ToggleHopper {&hopper});
     (Buttons::RB && Buttons::A)

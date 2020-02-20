@@ -28,8 +28,8 @@ namespace RobotMap {
         YELLOW = 4
     };
     enum Pneumatics {
-        HOPPERFORWARD = 0,
-        HOPPERREVERSE = 1
+        HOPPERFORWARD = 1,
+        HOPPERREVERSE = 0
     };
 }
 
