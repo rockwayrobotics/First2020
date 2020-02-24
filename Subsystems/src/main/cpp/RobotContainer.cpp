@@ -27,7 +27,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 }
 
 void RobotContainer::Drive(double y, double x) {
-  m_drivebase.Set(y, x);
+  m_drivebase.Set(y, x, 0);
 }
 
 void RobotContainer::MoveHook(double pow) {

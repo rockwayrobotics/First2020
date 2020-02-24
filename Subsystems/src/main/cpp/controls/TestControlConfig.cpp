@@ -6,6 +6,7 @@
 #include "commands/ToggleHopper.h"
 #include "commands/MoveHookTo.h"
 #include <frc2/command/InstantCommand.h>
+#include "commands/Driveth.h"
 
 #include <iostream>
 
@@ -41,5 +42,7 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::BLUE});
     (Buttons::RB && Buttons::Y)
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::YELLOW});
+    (Buttons::LB && Buttons::RB)
+        .WhenActive(Driveth{&drivebase});
     
 }

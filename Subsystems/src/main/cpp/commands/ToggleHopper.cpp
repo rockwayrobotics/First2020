@@ -1,6 +1,8 @@
 #include "commands/ToggleHopper.h"
+#include <iostream>
 
 ToggleHopper::ToggleHopper(HopperSubsystem* hopper) {
+    std::cout << "toggler created" << std::endl;
     m_hopper = hopper;
 }
 

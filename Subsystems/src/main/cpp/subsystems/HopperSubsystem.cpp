@@ -8,11 +8,13 @@ HopperSubsystem::HopperSubsystem() {
 }
 
 void HopperSubsystem::Load() {
+    std::cout << "Retracting hopper solenoid" << std::endl; 
     m_solenoid.Set(frc::DoubleSolenoid::Value::kForward);
     std::cout << "Loading: " << GetState() << std::endl;
 }
 
 void HopperSubsystem::Dump() {
+    std::cout << "Extending hopper solenoid" << std::endl;
     m_solenoid.Set(frc::DoubleSolenoid::Value::kReverse);
     std::cout << "Dumping: " << GetState() << std::endl;
 }

@@ -12,7 +12,8 @@
 class DrivebaseSubsystem : frc2::SubsystemBase {
     public:
         DrivebaseSubsystem();
-        void Set(double y, double x);
+        void Set(double y, double x, int priority);
+        void Periodic() override;
         void SetScale(double scale);
         double GetLDistance();
         double GetRDistance();
@@ -28,7 +29,8 @@ class DrivebaseSubsystem : frc2::SubsystemBase {
         frc::Encoder m_rightEncoder {RobotMap::DIO::DBENCODERR1, RobotMap::DIO::DBENCODERR2};
         double m_y;
         double m_x;
-        double m_scale = 0;
+        double m_scale = 1;
+        int m_priority = 0;
 };
 
 #endif

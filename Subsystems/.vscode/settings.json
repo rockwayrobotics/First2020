@@ -14,7 +14,10 @@
     "**/.factorypath": true
   },
   "files.associations": {
-    "ostream": "cpp"
-  },
-  "C_Cpp.default.configurationProvider": "vscode-wpilib"
+    "ostream": "cpp",
+    "*.tcc": "cpp",
+    "bitset": "cpp",
+    "fstream": "cpp",
+    "sstream": "cpp"
+  }
 }
