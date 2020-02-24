@@ -85,7 +85,7 @@ void Robot::TeleopPeriodic() {
     -Controllers::xbox.GetY(Controls::DriveAxis[0]),
     Controllers::xbox.GetX(Controls::DriveAxis[1])
   );
-
+  m_container.MoveHook(-Controllers::xbox.GetY(frc::GenericHID::JoystickHand::kRightHand));
 }
 
 void Robot::TestInit() {}

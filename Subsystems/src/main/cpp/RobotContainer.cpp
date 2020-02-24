@@ -18,7 +18,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  Controls::ConfigureButtonBindings(m_drivebase, m_wheelSpinner, m_colourSensor, m_hopper);
+  Controls::ConfigureButtonBindings(m_drivebase, m_wheelSpinner, m_colourSensor, m_hopper, m_hook);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
@@ -28,6 +28,10 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::Drive(double y, double x) {
   m_drivebase.Set(y, x);
+}
+
+void RobotContainer::MoveHook(double pow) {
+  m_hook.Move(pow);
 }
 
 void RobotContainer::StartColourSensor() {

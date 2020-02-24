@@ -12,11 +12,10 @@ class WheelSpinnerSubsystem : public frc2::SubsystemBase {
     public:
         WheelSpinnerSubsystem();
         void Spin(double spinPow);
-        void Stop();
+        void Periodic() override;
     private:
         frc::PWMTalonSRX m_motor {RobotMap::Motors::WHEELMOTOR};
         double m_spinPow;
-        frc2::Command* currentCommand = nullptr;
 };
 
 #endif

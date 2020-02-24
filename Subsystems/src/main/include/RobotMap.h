@@ -10,8 +10,8 @@ namespace RobotMap {
         LEFTMOTOR2 = 2,
         RIGHTMOTOR1 = 3,
         RIGHTMOTOR2 = 4,
-        WINCHMOTOR = 6,
-        WHEELMOTOR = 5
+        WINCHMOTOR = 5,
+        WHEELMOTOR = 6
     };
     enum Controllers { 
         // Controller ports
@@ -28,8 +28,19 @@ namespace RobotMap {
         YELLOW = 4
     };
     enum Pneumatics {
+        // pneumatic ports on PCM
         HOPPERFORWARD = 1,
         HOPPERREVERSE = 0
+    };
+    enum Analog {
+        // analog ports on roboRIO
+        HOOKPOT = 0
+    };
+    enum DIO {
+        DBENCODERL1 = 0,
+        DBENCODERL2 = 1,
+        DBENCODERR1 = 2,
+        DBENCODERR2 = 3
     };
 }
 

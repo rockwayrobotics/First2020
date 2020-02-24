@@ -19,6 +19,7 @@
 #include "subsystems/DrivebaseSubsystem.h"
 #include "subsystems/WheelSpinnerSubsystem.h"
 #include "subsystems/HopperSubsystem.h"
+#include "subsystems/HookSubsystem.h"
 
 #include "RobotMap.h"
 
@@ -37,6 +38,7 @@ class RobotContainer {
   void StartColourSensor();
   void StopColourSensor();
   void Drive(double y, double x);
+  void MoveHook(double pow);
   
 
  private:
@@ -48,6 +50,7 @@ class RobotContainer {
   UpdateColourSensor m_colourSensorUpdater {&m_colourSensor};
   WheelSpinnerSubsystem m_wheelSpinner;
   HopperSubsystem m_hopper;
+  HookSubsystem m_hook;
   
 
   void ConfigureButtonBindings();

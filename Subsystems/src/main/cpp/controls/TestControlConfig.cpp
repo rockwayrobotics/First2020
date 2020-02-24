@@ -4,11 +4,12 @@
 #include "commands/SpinWheel.h"
 #include "commands/SpinWheelToColour.h"
 #include "commands/ToggleHopper.h"
+#include "commands/MoveHookTo.h"
 #include <frc2/command/InstantCommand.h>
 
 #include <iostream>
 
-void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinnerSubsystem& wheelSpinner, ColourSensorSubsystem& colourSensor, HopperSubsystem& hopper) {
+void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinnerSubsystem& wheelSpinner, ColourSensorSubsystem& colourSensor, HopperSubsystem& hopper, HookSubsystem& hook) {
     // Configure button bindings here
     
     Buttons::LB
@@ -16,29 +17,22 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
         .WhenReleased(ScaleDrive {&drivebase, 0.5});
     Buttons::RB
         .WhenPressed(SpinWheel {&wheelSpinner, 0});
+    
+    Buttons::RT
+        .WhenActive(MoveHookTo {&hook, 1});
+    Buttons::LT
+        .WhenActive(MoveHookTo {&hook, 0});
+
     (!Buttons::RB && Buttons::X)
         .WhenActive(SpinWheel {&wheelSpinner, -1})
         .WhenInactive(SpinWheel {&wheelSpinner, 0});
-
     (!Buttons::RB && Buttons::Y)
-    .WhenActive([&]() {
-        hopper.Dump();
-    }, {&hopper});
-    (!Buttons::RB && Buttons::L)
-    .WhenActive([&]() {
-        hopper.Load();
-    }, {&hopper});
-    (!Buttons::RB && Buttons::R)
-    .WhenActive([&]() {
-        hopper.Off();
-    }, {&hopper});
+        .WhenActive([&]() {hopper.Toggle();}, {&hopper});
     (!Buttons::RB && Buttons::B)
-    .WhenActive([&]() {
-        std::cout << "Solenoid state: " << hopper.GetState() << "\n";
-    }, {&hopper});
-
+        .WhenActive([&]() {std::cout << "Solenoid state: " << hopper.GetState() << "\n";}, {&hopper});
     (!Buttons::RB && Buttons::A)
         .WhenActive(ToggleHopper {&hopper});
+    
     (Buttons::RB && Buttons::A)
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::GREEN});
     (Buttons::RB && Buttons::B)
