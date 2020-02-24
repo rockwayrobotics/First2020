@@ -17,7 +17,6 @@ class DrivebaseSubsystem : frc2::SubsystemBase {
         void SetScale(double scale);
         double GetLDistance();
         double GetRDistance();
-        void Periodic() override;
     private:
         frc::PWMVictorSPX m_leftMotor1 {RobotMap::Motors::LEFTMOTOR1};
         frc::PWMVictorSPX m_leftMotor2 {RobotMap::Motors::LEFTMOTOR2};
