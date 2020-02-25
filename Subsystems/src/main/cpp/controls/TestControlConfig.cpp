@@ -5,6 +5,7 @@
 #include "commands/SpinWheelToColour.h"
 #include "commands/ToggleHopper.h"
 #include "commands/MoveHookTo.h"
+#include "commands/RetractHopper.h"
 #include <frc2/command/InstantCommand.h>
 #include "commands/Driveth.h"
 
@@ -20,15 +21,19 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
         .WhenPressed(SpinWheel {&wheelSpinner, 0});
     
     Buttons::RT
-        .WhenActive(MoveHookTo {&hook, 1});
+        .WhenActive(MoveHookTo {&hook, 0.8});
     Buttons::LT
-        .WhenActive(MoveHookTo {&hook, 0});
+        .WhenActive(MoveHookTo {&hook, 0.5});
 
     (!Buttons::RB && Buttons::X)
         .WhenActive(SpinWheel {&wheelSpinner, -1})
         .WhenInactive(SpinWheel {&wheelSpinner, 0});
     (!Buttons::RB && Buttons::Y)
-        .WhenActive([&]() {hopper.Toggle();}, {&hopper});
+        .WhenActive([&]() {
+            hopper.Toggle();
+        }, {&hopper});
+    Buttons::R
+        .WhenPressed(RetractHopper {&hopper});
     (!Buttons::RB && Buttons::B)
         .WhenActive([&]() {std::cout << "Solenoid state: " << hopper.GetState() << "\n";}, {&hopper});
     (!Buttons::RB && Buttons::A)
@@ -42,7 +47,7 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::BLUE});
     (Buttons::RB && Buttons::Y)
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::YELLOW});
-    (Buttons::LB && Buttons::RB)
+    /*(Buttons::LB && Buttons::RB)
         .WhenActive(Driveth{&drivebase});
-    
+    */
 }

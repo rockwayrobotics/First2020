@@ -11,6 +11,7 @@ class HopperSubsystem : public frc2::SubsystemBase {
         HopperSubsystem();
         void Dump();
         void Load();
+        void SetLoad();
         void Toggle();
         void Off();
         frc::DoubleSolenoid::Value GetState();
@@ -20,4 +21,5 @@ class HopperSubsystem : public frc2::SubsystemBase {
             RobotMap::Pneumatics::HOPPERREVERSE
         };
         bool m_dumped;
+
 };

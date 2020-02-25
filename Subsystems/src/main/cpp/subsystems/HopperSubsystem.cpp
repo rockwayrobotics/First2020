@@ -1,13 +1,16 @@
 #include "subsystems/HopperSubsystem.h"
+#include <frc2/command/CommandScheduler.h>
 #include <iostream>
 
 HopperSubsystem::HopperSubsystem() {
     Load();
     m_dumped = false;
-    m_solenoid.ClearAllPCMStickyFaults();
-}
+    m_solenoid.ClearAllPCMStickyFaults();}
 
 void HopperSubsystem::Load() {
+}
+
+void HopperSubsystem::SetLoad() {
     std::cout << "Retracting hopper solenoid" << std::endl; 
     m_solenoid.Set(frc::DoubleSolenoid::Value::kForward);
     std::cout << "Loading: " << GetState() << std::endl;

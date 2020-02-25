@@ -31,7 +31,7 @@ void RobotContainer::Drive(double y, double x) {
 }
 
 void RobotContainer::MoveHook(double pow) {
-  m_hook.Move(pow);
+  m_hook.Move(pow, 0);
 }
 
 void RobotContainer::StartColourSensor() {
