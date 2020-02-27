@@ -5,7 +5,6 @@
 #include "commands/SpinWheelToColour.h"
 #include "commands/ToggleHopper.h"
 #include "commands/MoveHookTo.h"
-#include "commands/RetractHopper.h"
 #include <frc2/command/InstantCommand.h>
 #include "commands/Driveth.h"
 
@@ -32,10 +31,15 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
         .WhenActive([&]() {
             hopper.Toggle();
         }, {&hopper});
-    Buttons::R
-        .WhenPressed(RetractHopper {&hopper});
+    Buttons::L
+        .WhenPressed([&]() { hopper.FlapOut(); })
+        .WhenReleased([&]() { hopper.FlapIn(); });
     (!Buttons::RB && Buttons::B)
-        .WhenActive([&]() {std::cout << "Solenoid state: " << hopper.GetState() << "\n";}, {&hopper});
+        .WhenActive([&]() {
+            std::cout << "Solenoid state: " << hopper.GetState() << "\n";
+            std::cout << "Left encoder value: " << drivebase.GetLDistance() << "\n";
+            std::cout << "Right encoder value: " << drivebase.GetRDistance() << "\n";
+        }, {&hopper});
     (!Buttons::RB && Buttons::A)
         .WhenActive(ToggleHopper {&hopper});
     
