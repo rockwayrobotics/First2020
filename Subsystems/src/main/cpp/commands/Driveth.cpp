@@ -1,35 +1,29 @@
 #include "commands/Driveth.h"
-int a = 0;
 int b = 0;
 
 
-Driveth::Driveth(DrivebaseSubsystem* Drbase) {
+Driveth::Driveth(DrivebaseSubsystem* Drbase, double y, double x, int time) {
     m_Drbase = Drbase;
+    m_y = y;
+    m_x = x;
+    m_time = time;
 }
 
 void Driveth::Initialize() {
     finished = false;
+    b = 0;
 }
 
 void Driveth::Execute() {
-    double x,y;
-    x = 0;
-    y = 0.3;
     b++;
-    m_Drbase->Set(y,x, 1);
-    if (b == 50){
-        a++;
-        b = 0;
+    m_Drbase->Set(m_y, m_x, 1);
+    if (b == m_time){
+        finished = true;
     }
     
     
 
-    std::cout << "Working" << a << std::endl;
-    if (a == 1){
-        finished = true;
-        a = 0;
-        b = 0;
-    }
+    std::cout << "Working" << b << std::endl;
 }
 
 

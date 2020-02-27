@@ -9,7 +9,7 @@
 
 #include "controls/TestControlConfig.h"
 
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
+RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
@@ -23,6 +23,7 @@ void RobotContainer::ConfigureButtonBindings() {
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
+  std::cout << "I am working in robotcontainer under GetAutonomousCommad" << std::endl;
   return &m_autonomousCommand;
 }
 

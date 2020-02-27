@@ -13,36 +13,57 @@
 void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinnerSubsystem& wheelSpinner, ColourSensorSubsystem& colourSensor, HopperSubsystem& hopper, HookSubsystem& hook) {
     // Configure button bindings here
     
-    Buttons::LB
+    XboxButtons::LB
         .WhenPressed(ScaleDrive {&drivebase, 1})
         .WhenReleased(ScaleDrive {&drivebase, 0.5});
-    Buttons::RB
+    XboxButtons::RB
         .WhenPressed(SpinWheel {&wheelSpinner, 0});
     
-    Buttons::RT
+    XboxButtons::RT
         .WhenActive(MoveHookTo {&hook, 1});
-    Buttons::LT
+    XboxButtons::LT
         .WhenActive(MoveHookTo {&hook, 0});
 
-    (!Buttons::RB && Buttons::X)
+    (!XboxButtons::RB && XboxButtons::X)
         .WhenActive(SpinWheel {&wheelSpinner, -1})
         .WhenInactive(SpinWheel {&wheelSpinner, 0});
-    (!Buttons::RB && Buttons::Y)
+    (!XboxButtons::RB && XboxButtons::Y)
         .WhenActive([&]() {hopper.Toggle();}, {&hopper});
-    (!Buttons::RB && Buttons::B)
+    (!XboxButtons::RB && XboxButtons::B)
         .WhenActive([&]() {std::cout << "Solenoid state: " << hopper.GetState() << "\n";}, {&hopper});
-    (!Buttons::RB && Buttons::A)
+    (!XboxButtons::RB && XboxButtons::A)
         .WhenActive(ToggleHopper {&hopper});
     
-    (Buttons::RB && Buttons::A)
+    (XboxButtons::RB && XboxButtons::A)
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::GREEN});
-    (Buttons::RB && Buttons::B)
+    (XboxButtons::RB && XboxButtons::B)
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::RED});
-    (Buttons::RB && Buttons::X)
+    (XboxButtons::RB && XboxButtons::X)
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::BLUE});
-    (Buttons::RB && Buttons::Y)
+    (XboxButtons::RB && XboxButtons::Y)
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::YELLOW});
-    (Buttons::LB && Buttons::RB)
-        .WhenActive(Driveth{&drivebase});
+    /*(XboxButtons::LB && XboxButtons::RB)
+        .WhenActive(Driveth{&drivebase}); This is the code that absolutly destryoed the tables and this is a momento to that code and moment. Today we say good bye to a good friend and terrible enemy for we always miss you i loved you with all my heart and i hope that one day your 1s and 0s may one day forgive my poor soul for ever and ever I will see you on the other side Joe I know what you did and I will never forgive you if you go through with it */
+    FlightButtons::Trigger9
+        .WhenActive([&]() {std:: cout << "Yote the button be pressed9" << std::endl;});
+    FlightButtons::Trigger1
+        .WhenActive(MoveHookTo {&hook, 1});
+    FlightButtons::Trigger2
+        .WhenActive(MoveHookTo {&hook, 0});
+    FlightButtons::Trigger3
+        .WhenActive([&]() {std:: cout << "Yote the button be pressed3" << std::endl;});
+    FlightButtons::Trigger4
+        .WhenActive([&]() {std:: cout << "Yote the button be pressed4" << std::endl;});
+    FlightButtons::Trigger5
+        .WhenActive([&]() {std:: cout << "Yote the button be pressed5" << std::endl;});
+    FlightButtons::Trigger6
+        .WhenActive([&]() {std:: cout << "Yote the button be pressed6" << std::endl;});
+    FlightButtons::Trigger7
+        .WhenActive([&]() {std:: cout << "Yote the button be pressed7" << std::endl;});
+    FlightButtons::Trigger8
+        .WhenActive([&]() {std:: cout << "Yote the button be pressed8" << std::endl;});
+    //FlightButtons::Trigger9
+      //  .WhenActive([&]() {std:: cout << "Yote the button be pressed" << std::endl;});
+    
     
 }

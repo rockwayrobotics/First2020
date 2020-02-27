@@ -1,20 +1,10 @@
+
 #include "commands/AutonomousCode.h"
-#include "commands/Driveth.h"
+#include "frc2/command/SequentialCommandGroup.h"
 
 Autonomous::Autonomous(DrivebaseSubsystem* Drbase) {
-    m_Drbase = Drbase;
-}
-
-void Autonomous::Initialize() {
-    finished = false;
-}
-
-void Autonomous::Execute() {
-    frc2::CommandScheduler::GetInstance().Schedule(new Driveth{m_Drbase});
-    
-}
-
-
-bool Autonomous::IsFinished() {
-    return finished;
+    AddCommands(
+        Driveth {Drbase, 0.5, 0, 25}, 
+        Driveth {Drbase, 1, 0, 50}
+    );
 }
