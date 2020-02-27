@@ -11,13 +11,14 @@ const double offset = 0;
 class HookSubsystem : public frc2::SubsystemBase {
     public:
         HookSubsystem();
-        void Extend();
-        void Retract();
-        void Move(double pow);
+        void Extend(int priority);
+        void Retract(int priority);
+        void Move(double pow, int priority);
         double GetHeight();
         void Periodic() override;
     private:
         frc::PWMTalonSRX m_motor {RobotMap::Motors::WINCHMOTOR};
         frc::AnalogPotentiometer m_pot {RobotMap::Analog::HOOKPOT, fullRange, offset};
         double m_pow;
+        int m_priority;
 };

@@ -35,4 +35,6 @@ void DrivebaseSubsystem::Periodic() {
     m_drive1.ArcadeDrive(m_scale * m_y, m_scale * m_x);
     m_drive2.ArcadeDrive(m_scale * m_y, m_scale * m_x);
     m_priority = 0;
+    m_x = 0;
+    m_y = 0;
 }
