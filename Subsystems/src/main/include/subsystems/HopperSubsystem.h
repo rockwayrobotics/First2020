@@ -13,11 +13,18 @@ class HopperSubsystem : public frc2::SubsystemBase {
         void Load();
         void Toggle();
         void Off();
+        void FlapIn();
+        void FlapOut();
         frc::DoubleSolenoid::Value GetState();
     private:
         frc::DoubleSolenoid m_solenoid {
             RobotMap::Pneumatics::HOPPERFORWARD,
             RobotMap::Pneumatics::HOPPERREVERSE
         };
+        frc::DoubleSolenoid m_flap {
+            RobotMap::FLAPFORWARD,
+            RobotMap::FLAPREVERSE
+        };
         bool m_dumped;
+
 };

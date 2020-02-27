@@ -15,6 +15,7 @@ class MoveHookTo : public frc2::CommandHelper<frc2::CommandBase, MoveHookTo> {
     private:
         HookSubsystem* m_hook;
         double m_pow;
-        bool m_target;
+        double m_target;
         bool m_finished;
+        int timeout;
 };

@@ -20,17 +20,26 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
         .WhenPressed(SpinWheel {&wheelSpinner, 0});
     
     XboxButtons::RT
-        .WhenActive(MoveHookTo {&hook, 1});
+        .WhenActive(MoveHookTo {&hook, 0.8});
     XboxButtons::LT
-        .WhenActive(MoveHookTo {&hook, 0});
+        .WhenActive(MoveHookTo {&hook, 0.5});
 
     (!XboxButtons::RB && XboxButtons::X)
         .WhenActive(SpinWheel {&wheelSpinner, -1})
         .WhenInactive(SpinWheel {&wheelSpinner, 0});
     (!XboxButtons::RB && XboxButtons::Y)
-        .WhenActive([&]() {hopper.Toggle();}, {&hopper});
+        .WhenActive([&]() {
+            hopper.Toggle();
+        }, {&hopper});
+    XboxButtons::L
+        .WhenPressed([&]() { hopper.FlapOut(); })
+        .WhenReleased([&]() { hopper.FlapIn(); });
     (!XboxButtons::RB && XboxButtons::B)
-        .WhenActive([&]() {std::cout << "Solenoid state: " << hopper.GetState() << "\n";}, {&hopper});
+        .WhenActive([&]() {
+            std::cout << "Solenoid state: " << hopper.GetState() << "\n";
+            std::cout << "Left encoder value: " << drivebase.GetLDistance() << "\n";
+            std::cout << "Right encoder value: " << drivebase.GetRDistance() << "\n";
+        }, {&hopper});
     (!XboxButtons::RB && XboxButtons::A)
         .WhenActive(ToggleHopper {&hopper});
     
