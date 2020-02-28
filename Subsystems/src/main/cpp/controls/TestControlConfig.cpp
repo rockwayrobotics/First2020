@@ -5,6 +5,7 @@
 #include "commands/SpinWheelToColour.h"
 #include "commands/ToggleHopper.h"
 #include "commands/MoveHookTo.h"
+#include "commands/Chargeth.h"
 #include <frc2/command/InstantCommand.h>
 #include "commands/Driveth.h"
 

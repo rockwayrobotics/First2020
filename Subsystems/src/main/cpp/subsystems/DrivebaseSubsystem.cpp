@@ -23,6 +23,10 @@ void DrivebaseSubsystem::SetScale(double scale) {
     m_scale = scale;
 }
 
+void DrivebaseSubsystem::SetDistance_Going(double Distance_Going){
+    m_Distance_Going = Distance_Going; //This is the acutal thing that sets the distance it has to go
+}
+
 double DrivebaseSubsystem::GetLDistance() {
     return m_leftEncoder.GetDistance();
 }
