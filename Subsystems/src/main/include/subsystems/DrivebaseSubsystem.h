@@ -15,7 +15,6 @@ class DrivebaseSubsystem : frc2::SubsystemBase {
         void Set(double y, double x, int priority);
         void Periodic() override;
         void SetScale(double scale);
-        void SetDistance_Going(double Distance_Going);
         double GetLDistance();
         double GetRDistance();
     private:
