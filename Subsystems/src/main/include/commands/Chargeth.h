@@ -16,6 +16,9 @@ class Chargeth : public frc2::CommandHelper<frc2::CommandBase, Chargeth>{
         bool finished;
         double m_y;
         double m_distance_going;
-        double m_distance_travelled;
+        double m_startingDistanceL;
+        double m_startingDistanceR;
+        double m_deltaL;
+        double m_deltaR;
 
 };

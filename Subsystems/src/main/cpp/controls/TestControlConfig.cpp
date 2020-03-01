@@ -15,8 +15,8 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
     // Configure button bindings here
     
     XboxButtons::LB
-        .WhenPressed(ScaleDrive {&drivebase, 1})
-        .WhenReleased(ScaleDrive {&drivebase, 0.5});
+        .WhenPressed(ScaleDrive {&drivebase, 0.5})
+        .WhenReleased(ScaleDrive {&drivebase, 1});
     XboxButtons::RB
         .WhenPressed(SpinWheel {&wheelSpinner, 0});
     
@@ -28,24 +28,24 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
     (!XboxButtons::RB && XboxButtons::X)
         .WhenActive(SpinWheel {&wheelSpinner, -1})
         .WhenInactive(SpinWheel {&wheelSpinner, 0});
-    (!XboxButtons::RB && XboxButtons::Y)
-        .WhenActive([&]() {
-            hopper.Toggle();
-        }, {&hopper});
-    XboxButtons::L
-        .WhenPressed([&]() { hopper.FlapOut(); })
-        .WhenReleased([&]() { hopper.FlapIn(); });
+    //(!XboxButtons::RB && XboxButtons::Y)
+      //  .WhenActive([&]() {
+        //    hopper.Toggle();
+        //}, {&hopper});
+    //XboxButtons::L
+      //  .WhenPressed([&]() { hopper.FlapOut(); })
+        //.WhenReleased([&]() { hopper.FlapIn(); });
     (!XboxButtons::RB && XboxButtons::B)
         .WhenActive([&]() {
             std::cout << "Solenoid state: " << hopper.GetState() << "\n";
             std::cout << "Left encoder value: " << drivebase.GetLDistance() << "\n";
             std::cout << "Right encoder value: " << drivebase.GetRDistance() << "\n";
         }, {&hopper});
-    (!XboxButtons::RB && XboxButtons::A)
-        .WhenActive(ToggleHopper {&hopper});
+    //(!XboxButtons::RB && XboxButtons::A)
+      //  .WhenActive(ToggleHopper {&hopper});
     
     (XboxButtons::RB && XboxButtons::A)
-        .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::GREEN});
+         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::GREEN});
     (XboxButtons::RB && XboxButtons::B)
         .WhenActive(SpinWheelToColour {&wheelSpinner, &colourSensor, RobotMap::Colour::RED});
     (XboxButtons::RB && XboxButtons::X)
@@ -57,13 +57,18 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
     FlightButtons::Trigger9
         .WhenActive([&]() {std:: cout << "Yote the button be pressed9" << std::endl;});
     FlightButtons::Trigger1
-        .WhenActive(MoveHookTo {&hook, 1});
+        //.WhenActive(MoveHookTo {&hook, 1});
+        .WhenActive(ToggleHopper {&hopper});
     FlightButtons::Trigger2
-        .WhenActive(MoveHookTo {&hook, 0});
-    FlightButtons::Trigger3
-        .WhenActive([&]() {std:: cout << "Yote the button be pressed3" << std::endl;});
+        //.WhenActive(MoveHookTo {&hook, 0});
+        .WhenPressed([&]() { hopper.FlapOut(); })
+        .WhenReleased([&]() { hopper.FlapIn(); });
+/*    FlightButtons::Trigger3
+        .WhenActive(ToggleHopper {&hopper});
     FlightButtons::Trigger4
-        .WhenActive([&]() {std:: cout << "Yote the button be pressed4" << std::endl;});
+        .WhenActive([&]() {
+            hopper.Toggle();
+        }, {&hopper});*/
     FlightButtons::Trigger5
         .WhenActive([&]() {std:: cout << "Yote the button be pressed5" << std::endl;});
     FlightButtons::Trigger6

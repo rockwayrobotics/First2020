@@ -54,7 +54,7 @@ class RobotContainer {
   HopperSubsystem m_hopper;
   HookSubsystem m_hook;
   //Autonomous m_autonomous;
-  Autonomous m_autonomousCommand {&m_drivebase};
+  Autonomous m_autonomousCommand {&m_drivebase, &m_hopper};
   
 
   void ConfigureButtonBindings();

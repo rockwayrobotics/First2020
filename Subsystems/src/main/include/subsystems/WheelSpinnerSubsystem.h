@@ -4,7 +4,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/Command.h>
 
-#include <frc/PWMTalonSRX.h>
+#include <ctre/Phoenix.h>
 #include "RobotMap.h"
 
 
@@ -14,7 +14,7 @@ class WheelSpinnerSubsystem : public frc2::SubsystemBase {
         void Spin(double spinPow);
         void Periodic() override;
     private:
-        frc::PWMTalonSRX m_motor {RobotMap::Motors::WHEELMOTOR};
+        WPI_TalonSRX m_motor {RobotMap::CAN::WHEELMOTOR};
         double m_spinPow;
 };
 

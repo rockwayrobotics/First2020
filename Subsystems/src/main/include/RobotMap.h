@@ -4,8 +4,8 @@
 #include <frc/I2C.h>
 
 namespace RobotMap {
-    enum Motors {
-        // Motor ports
+    enum CAN {
+        // CAN IDs
         LEFTMOTOR1 = 1,
         LEFTMOTOR2 = 2,
         RIGHTMOTOR1 = 3,

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/PWMTalonSRX.h>
+#include <ctre/Phoenix.h>
 #include <frc/AnalogPotentiometer.h>
 #include "RobotMap.h"
 
@@ -17,7 +17,7 @@ class HookSubsystem : public frc2::SubsystemBase {
         double GetHeight();
         void Periodic() override;
     private:
-        frc::PWMTalonSRX m_motor {RobotMap::Motors::WINCHMOTOR};
+        WPI_TalonSRX m_motor {RobotMap::CAN::WINCHMOTOR};
         frc::AnalogPotentiometer m_pot {RobotMap::Analog::HOOKPOT, fullRange, offset};
         double m_pow;
         int m_priority;

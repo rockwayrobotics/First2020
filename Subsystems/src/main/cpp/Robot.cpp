@@ -69,7 +69,7 @@ void Robot::TeleopInit() {
   // This makes sure that the autonomous stops running when
   // teleop starts running. If you want the autonomous to
   // continue until interrupted by another command, remove
-  // this line or comment it out. Thank you for tell us. I really appericate your help and support. You just made my day much much better yes i think so at least that's what i think i tn=hink nut i think i don't know what i think but thinking is kind of realted to thinking so let's think baout how thinking rwquires thinking which invkes much thinking.
+  // this line or comment it out.
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;

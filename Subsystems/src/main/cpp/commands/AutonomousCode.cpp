@@ -1,12 +1,23 @@
-
 #include "commands/AutonomousCode.h"
-#include "frc2/command/SequentialCommandGroup.h"
+#include <frc2/command/SequentialCommandGroup.h>
 
-Autonomous::Autonomous(DrivebaseSubsystem* Drbase) {
+#include "AutonomousConstants.h"
+
+#include "commands/Driveth.h"
+#include "commands/Chargeth.h"
+#include "commands/Wait.h"
+#include "commands/ToggleHopper.h"
+
+Autonomous::Autonomous(DrivebaseSubsystem* Drbase, HopperSubsystem* hopper) {
     AddCommands(
-        Driveth {Drbase, 0.5, 0, 500}, 
-        Driveth {Drbase, 1, 0, 50},
-        Chargeth {Drbase, 0.5 , 0.001} //The chargeth command activated in autonomous which as of now in writing I dont know if it works
-    //At the curretn moment the chargeth goes forever which needs to be fixed
+        Wait {AutonomousConstants::InitialWait}, // This is the wait that is at the begining of autonomous
+        Chargeth {Drbase, AutonomousConstants::ForwardSpeed, AutonomousConstants::ForwardDistance} //Goes forward for a distance
+    );
+    if (AutonomousConstants::Dump) {
+        AddCommands(ToggleHopper {hopper});
+    }
+    AddCommands(
+        Wait {AutonomousConstants::DumpWait}, //This should be the time it takes for the balls to roll out
+        Chargeth {Drbase, -AutonomousConstants::BackwardsSpeed, AutonomousConstants::BackwardsDistance} //Goes backward for a distance
     );
 }
