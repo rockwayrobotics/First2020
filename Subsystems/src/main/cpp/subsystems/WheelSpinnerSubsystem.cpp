@@ -4,9 +4,10 @@ WheelSpinnerSubsystem::WheelSpinnerSubsystem() {
 }
 
 void WheelSpinnerSubsystem::Spin(double spinPow) {
-    m_motor.Set(spinPow);
+    m_spinPow = spinPow;
 }
 
-void WheelSpinnerSubsystem::Stop() {
-    currentCommand->Cancel();
+void WheelSpinnerSubsystem::Periodic() {
+    m_motor.Set(m_spinPow);
+    m_spinPow = 0;
 }

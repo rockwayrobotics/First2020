@@ -9,7 +9,7 @@
 
 #include "controls/TestControlConfig.h"
 
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
+RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
@@ -18,16 +18,21 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  Controls::ConfigureButtonBindings(m_drivebase, m_wheelSpinner, m_colourSensor, m_hopper);
+  Controls::ConfigureButtonBindings(m_drivebase, m_wheelSpinner, m_colourSensor, m_hopper, m_hook);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
+  std::cout << "I am working in robotcontainer under GetAutonomousCommad" << std::endl;
   return &m_autonomousCommand;
 }
 
 void RobotContainer::Drive(double y, double x) {
   m_drivebase.Set(y, x, 0);
+}
+
+void RobotContainer::MoveHook(double pow) {
+  m_hook.Move(pow, 0);
 }
 
 void RobotContainer::StartColourSensor() {

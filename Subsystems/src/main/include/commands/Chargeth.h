@@ -1,20 +1,24 @@
 #pragma once
 
-
 #include "subsystems/DrivebaseSubsystem.h"
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/Command.h>
 
-class Driveth : public frc2::CommandHelper<frc2::CommandBase, Driveth>{
+class Chargeth : public frc2::CommandHelper<frc2::CommandBase, Chargeth>{
     public:
-        Driveth(DrivebaseSubsystem* Drbase, double y, double x, int time);
+        Chargeth(DrivebaseSubsystem* Drbase, double y, double distance_going);
         void Initialize() override;
         void Execute() override;
         bool IsFinished() override;
     private:
         DrivebaseSubsystem* m_Drbase;
         bool finished;
-        double m_y, m_x;
-        int m_time;
+        double m_y;
+        double m_distance_going;
+        double m_startingDistanceL;
+        double m_startingDistanceR;
+        double m_deltaL;
+        double m_deltaR;
+
 };

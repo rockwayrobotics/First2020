@@ -10,7 +10,8 @@ namespace Controls {
         frc::GenericHID::JoystickHand::kLeftHand, // forward-backward stick
         frc::GenericHID::JoystickHand::kLeftHand  // left-right stick
     };
-    void ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinnerSubsystem& wheelSpinner, ColourSensorSubsystem& colourSensor, HopperSubsystem& hopper);
+    
+    void ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinnerSubsystem& wheelSpinner, ColourSensorSubsystem& colourSensor, HopperSubsystem& hopper, HookSubsystem& hook);
 }
 
 #endif

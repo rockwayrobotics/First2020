@@ -19,6 +19,10 @@
 #include "subsystems/DrivebaseSubsystem.h"
 #include "subsystems/WheelSpinnerSubsystem.h"
 #include "subsystems/HopperSubsystem.h"
+#include "subsystems/HookSubsystem.h"
+
+#include "commands/AutonomousCode.h"
+#include "commands/Driveth.h"
 
 #include "RobotMap.h"
 
@@ -37,17 +41,20 @@ class RobotContainer {
   void StartColourSensor();
   void StopColourSensor();
   void Drive(double y, double x);
+  void MoveHook(double pow);
   
 
  private:
   // The robot's subsystems and commands are defined here...
   ExampleSubsystem m_subsystem;
-  ExampleCommand m_autonomousCommand;
   ColourSensorSubsystem m_colourSensor;
   DrivebaseSubsystem m_drivebase;
   UpdateColourSensor m_colourSensorUpdater {&m_colourSensor};
   WheelSpinnerSubsystem m_wheelSpinner;
   HopperSubsystem m_hopper;
+  HookSubsystem m_hook;
+  //Autonomous m_autonomous;
+  Autonomous m_autonomousCommand {&m_drivebase, &m_hopper};
   
 
   void ConfigureButtonBindings();
