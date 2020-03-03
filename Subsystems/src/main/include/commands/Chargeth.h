@@ -20,5 +20,8 @@ class Chargeth : public frc2::CommandHelper<frc2::CommandBase, Chargeth>{
         double m_startingDistanceR;
         double m_deltaL;
         double m_deltaR;
-
+        double m_targetDistanceL;
+        double m_targetDistanceR;
+        double m_powL;
+        double m_powR;
 };
