@@ -18,6 +18,7 @@ class DrivebaseSubsystem : public frc2::SubsystemBase {
         void SetScale(double scale);
         double GetLDistance();
         double GetRDistance();
+        bool GetStopped();
     private:
         WPI_VictorSPX m_leftMotor1 {RobotMap::CAN::LEFTMOTOR1};
         WPI_VictorSPX m_leftMotor2 {RobotMap::CAN::LEFTMOTOR2};

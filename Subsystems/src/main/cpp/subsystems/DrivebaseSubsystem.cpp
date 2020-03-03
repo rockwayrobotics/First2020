@@ -1,4 +1,5 @@
 #include "subsystems/DrivebaseSubsystem.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <iostream>
 
 const double PULSESPERREVOLUTION = 360;
@@ -34,16 +35,15 @@ void DrivebaseSubsystem::SetScale(double scale) {
 }
 
 double DrivebaseSubsystem::GetLDistance() {
-    std::cout << "left encoder pulses: " << m_leftEncoder.Get() << std::endl;
-    if (m_leftEncoder.GetStopped() || m_rightEncoder.GetStopped()) {
-        std::cout << "encoder not turning" << std::endl;
-    }
     return m_leftEncoder.GetDistance();
 }
 
 double DrivebaseSubsystem::GetRDistance() {
-    std::cout << "right encoder pulses: " << m_rightEncoder.Get() << std::endl;
     return m_rightEncoder.GetDistance();
+}
+
+bool DrivebaseSubsystem::GetStopped() {
+    return m_leftEncoder.GetStopped() && m_rightEncoder.GetStopped();
 }
 
 void DrivebaseSubsystem::Periodic() {
@@ -57,6 +57,8 @@ void DrivebaseSubsystem::Periodic() {
 
     m_priority = 0;
 
+    frc::SmartDashboard::PutNumber("Left encoder", m_leftEncoder.Get());
+    frc::SmartDashboard::PutNumber("Right encoder", m_rightEncoder.Get());
     m_x = 0;
     m_y = 0;
     m_l = 0;

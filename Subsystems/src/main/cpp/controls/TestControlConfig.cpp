@@ -63,6 +63,10 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
         //.WhenActive(MoveHookTo {&hook, 0});
         .WhenPressed([&]() { hopper.FlapOut(); })
         .WhenReleased([&]() { hopper.FlapIn(); });
+    FlightButtons::Trigger8
+        .WhenPressed([&]() { hopper.FlapOut(); });
+    FlightButtons::Trigger9
+        .WhenPressed([&]() { hopper.FlapIn(); });
 /*    FlightButtons::Trigger3
         .WhenActive(ToggleHopper {&hopper});
     FlightButtons::Trigger4
