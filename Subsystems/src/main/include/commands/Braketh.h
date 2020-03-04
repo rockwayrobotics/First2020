@@ -7,7 +7,7 @@
 
 class Braketh : public frc2::CommandHelper<frc2::CommandBase, Braketh>{
     public:
-        Braketh(DrivebaseSubsystem* Drbase, double braking_speed);
+        Braketh(DrivebaseSubsystem* Drbase);
         void Initialize() override;
         void Execute() override;
         bool IsFinished() override;

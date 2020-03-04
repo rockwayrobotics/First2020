@@ -42,6 +42,14 @@ double DrivebaseSubsystem::GetRDistance() {
     return m_rightEncoder.GetDistance();
 }
 
+double DrivebaseSubsystem::GetLRate() {
+    return m_leftEncoder.GetRate();
+}
+
+double DrivebaseSubsystem::GetRRate() {
+    return m_rightEncoder.GetRate();
+}
+
 bool DrivebaseSubsystem::GetStopped() {
     return m_leftEncoder.GetStopped() && m_rightEncoder.GetStopped();
 }
@@ -57,8 +65,8 @@ void DrivebaseSubsystem::Periodic() {
 
     m_priority = 0;
 
-    frc::SmartDashboard::PutNumber("Left encoder", m_leftEncoder.Get());
-    frc::SmartDashboard::PutNumber("Right encoder", m_rightEncoder.Get());
+    //frc::SmartDashboard::PutNumber("Left encoder", m_leftEncoder.Get());
+    //frc::SmartDashboard::PutNumber("Right encoder", m_rightEncoder.Get());
     m_x = 0;
     m_y = 0;
     m_l = 0;
