@@ -3,13 +3,20 @@
 #include <iostream>
 
 const double PULSESPERREVOLUTION = 360;
-const double WHEELDIAMETER = 4;
+const double WHEELDIAMETER = 6;
 const double PI = 3.14159265358979323846;
 const double DISPERPULSE = WHEELDIAMETER * PI / PULSESPERREVOLUTION;
 
 DrivebaseSubsystem::DrivebaseSubsystem() {
-    m_leftEncoder.SetDistancePerPulse(DISPERPULSE);
-    m_rightEncoder.SetDistancePerPulse(DISPERPULSE);
+    m_leftEncoder.SetDistancePerPulse(DISPERPULSE); // left encoder spins positive when robot goes forward
+    m_rightEncoder.SetDistancePerPulse(-DISPERPULSE); // right encoder spins negative when robot goes forward
+    m_leftEncoder.Reset();
+    m_rightEncoder.Reset();
+    m_l = 0;
+    m_r = 0;
+    m_x = 0;
+    m_y = 0;
+    m_usingLR = false;
 }
 
 void DrivebaseSubsystem::Set(double y, double x, int priority) {
@@ -59,6 +66,8 @@ void DrivebaseSubsystem::Periodic() {
 
     frc::SmartDashboard::PutNumber("Left encoder", m_leftEncoder.Get());
     frc::SmartDashboard::PutNumber("Right encoder", m_rightEncoder.Get());
+    frc::SmartDashboard::PutNumber("Left encoder distance", m_leftEncoder.GetDistance());
+    frc::SmartDashboard::PutNumber("Right encoder distance", m_rightEncoder.GetDistance());
     m_x = 0;
     m_y = 0;
     m_l = 0;

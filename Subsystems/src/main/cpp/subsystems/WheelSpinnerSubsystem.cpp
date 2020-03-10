@@ -1,6 +1,7 @@
 #include "subsystems/WheelSpinnerSubsystem.h"
 
 WheelSpinnerSubsystem::WheelSpinnerSubsystem() {
+    m_spinPow = 0;
 }
 
 void WheelSpinnerSubsystem::Spin(double spinPow) {
