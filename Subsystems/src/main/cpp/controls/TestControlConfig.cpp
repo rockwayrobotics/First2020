@@ -6,6 +6,7 @@
 #include "commands/ToggleHopper.h"
 #include "commands/MoveHookTo.h"
 #include "commands/Chargeth.h"
+#include "commands/Braketh.h"
 #include <frc2/command/InstantCommand.h>
 #include "commands/Driveth.h"
 
@@ -74,7 +75,7 @@ void Controls::ConfigureButtonBindings(DrivebaseSubsystem& drivebase, WheelSpinn
             hopper.Toggle();
         }, {&hopper});*/
     FlightButtons::Trigger5
-        .WhenActive([&]() {std:: cout << "Yote the button be pressed5" << std::endl;});
+        .WhenActive(Braketh{&drivebase});
     FlightButtons::Trigger6
         .WhenActive([&]() {std:: cout << "Yote the button be pressed6" << std::endl;});
     FlightButtons::Trigger7

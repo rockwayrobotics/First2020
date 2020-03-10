@@ -49,6 +49,14 @@ double DrivebaseSubsystem::GetRDistance() {
     return m_rightEncoder.GetDistance();
 }
 
+double DrivebaseSubsystem::GetLRate() {
+    return m_leftEncoder.GetRate();
+}
+
+double DrivebaseSubsystem::GetRRate() {
+    return m_rightEncoder.GetRate();
+}
+
 bool DrivebaseSubsystem::GetStopped() {
     return m_leftEncoder.GetStopped() && m_rightEncoder.GetStopped();
 }
