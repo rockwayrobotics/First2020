@@ -1,14 +1,22 @@
 #include "subsystems/DrivebaseSubsystem.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <iostream>
 
 const double PULSESPERREVOLUTION = 360;
-const double WHEELDIAMETER = 4;
+const double WHEELDIAMETER = 6;
 const double PI = 3.14159265358979323846;
 const double DISPERPULSE = WHEELDIAMETER * PI / PULSESPERREVOLUTION;
 
 DrivebaseSubsystem::DrivebaseSubsystem() {
-    m_leftEncoder.SetDistancePerPulse(DISPERPULSE);
-    m_rightEncoder.SetDistancePerPulse(DISPERPULSE);
+    m_leftEncoder.SetDistancePerPulse(DISPERPULSE); // left encoder spins positive when robot goes forward
+    m_rightEncoder.SetDistancePerPulse(-DISPERPULSE); // right encoder spins negative when robot goes forward
+    m_leftEncoder.Reset();
+    m_rightEncoder.Reset();
+    m_l = 0;
+    m_r = 0;
+    m_x = 0;
+    m_y = 0;
+    m_usingLR = false;
 }
 
 void DrivebaseSubsystem::Set(double y, double x, int priority) {
@@ -34,16 +42,23 @@ void DrivebaseSubsystem::SetScale(double scale) {
 }
 
 double DrivebaseSubsystem::GetLDistance() {
-    std::cout << "left encoder pulses: " << m_leftEncoder.Get() << std::endl;
-    if (m_leftEncoder.GetStopped() || m_rightEncoder.GetStopped()) {
-        std::cout << "encoder not turning" << std::endl;
-    }
     return m_leftEncoder.GetDistance();
 }
 
 double DrivebaseSubsystem::GetRDistance() {
-    std::cout << "right encoder pulses: " << m_rightEncoder.Get() << std::endl;
     return m_rightEncoder.GetDistance();
+}
+
+double DrivebaseSubsystem::GetLRate() {
+    return m_leftEncoder.GetRate();
+}
+
+double DrivebaseSubsystem::GetRRate() {
+    return m_rightEncoder.GetRate();
+}
+
+bool DrivebaseSubsystem::GetStopped() {
+    return m_leftEncoder.GetStopped() && m_rightEncoder.GetStopped();
 }
 
 void DrivebaseSubsystem::Periodic() {
@@ -57,6 +72,10 @@ void DrivebaseSubsystem::Periodic() {
 
     m_priority = 0;
 
+    frc::SmartDashboard::PutNumber("Left encoder", m_leftEncoder.Get());
+    frc::SmartDashboard::PutNumber("Right encoder", m_rightEncoder.Get());
+    frc::SmartDashboard::PutNumber("Left encoder distance", m_leftEncoder.GetDistance());
+    frc::SmartDashboard::PutNumber("Right encoder distance", m_rightEncoder.GetDistance());
     m_x = 0;
     m_y = 0;
     m_l = 0;

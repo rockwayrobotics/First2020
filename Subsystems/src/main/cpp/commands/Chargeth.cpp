@@ -2,11 +2,12 @@
 #include <cmath>
 #include <iostream>
 
-Chargeth::Chargeth(DrivebaseSubsystem* Drbase, double y, double distance_going) {
+Chargeth::Chargeth(DrivebaseSubsystem* Drbase, double y, double distance_going, int timeout) {
     AddRequirements({Drbase});
     m_Drbase = Drbase;
     m_y = y;
     m_distance_going = distance_going;
+    m_timeout = timeout;
 }
 
 void Chargeth::Initialize() {
@@ -27,7 +28,6 @@ void Chargeth::Execute() {
     } else {
         m_Drbase->SetLR(m_powL, m_powR, 1);
     }
-    std::cout << "Chargething. Distance: " << std::abs(m_Drbase->GetLDistance() - m_startingDistanceL) << std::endl;
 }
 
 

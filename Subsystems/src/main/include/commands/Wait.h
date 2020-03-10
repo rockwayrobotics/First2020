@@ -7,6 +7,7 @@ class Wait : public frc2::CommandHelper<frc2::CommandBase, Wait> {
         void Initialize() override;
         void Execute() override;
         bool IsFinished() override;
+        void End(bool interrupted) override;
     private:
         int m_count;
         int m_target;

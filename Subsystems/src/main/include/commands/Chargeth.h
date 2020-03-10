@@ -6,7 +6,7 @@
 
 class Chargeth : public frc2::CommandHelper<frc2::CommandBase, Chargeth>{
     public:
-        Chargeth(DrivebaseSubsystem* Drbase, double y, double distance_going);
+        Chargeth(DrivebaseSubsystem* Drbase, double y, double distance_going, int timeout = -1);
         void Initialize() override;
         void Execute() override;
         bool IsFinished() override;
@@ -23,4 +23,5 @@ class Chargeth : public frc2::CommandHelper<frc2::CommandBase, Chargeth>{
         double m_targetDistanceR;
         double m_powL;
         double m_powR;
+        int m_timeout;
 };

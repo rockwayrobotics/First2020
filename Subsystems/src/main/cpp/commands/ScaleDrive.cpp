@@ -7,8 +7,8 @@ ScaleDrive::ScaleDrive(DrivebaseSubsystem* drivebase, double scale) : m_drivebas
 
 void ScaleDrive::Initialize() {
     m_drivebase->SetScale(m_scale);
-    std::cout << "Left encoder distance: " << m_drivebase->GetLDistance() << std::endl;
-    std::cout << "Right encoder distance: " << m_drivebase->GetRDistance() << std::endl;
+    //std::cout << "Left encoder distance: " << m_drivebase->GetLDistance() << std::endl;
+    //std::cout << "Right encoder distance: " << m_drivebase->GetRDistance() << std::endl;
     m_finished = true;
 }
 
