@@ -9,16 +9,24 @@ HopperSubsystem::HopperSubsystem() {
     m_solenoid.ClearAllPCMStickyFaults();
 }
 
-void HopperSubsystem::Load() {
+void HopperSubsystem::Load(bool flapOut) {
     std::cout << "Retracting hopper solenoid" << std::endl;
-    FlapOut(); 
+    if (flapOut) {
+        FlapOut();
+    } else {
+        FlapIn();
+    }
     m_solenoid.Set(frc::DoubleSolenoid::Value::kForward);
     std::cout << "Loading: " << GetState() << std::endl;
 }
 
-void HopperSubsystem::Dump() {
+void HopperSubsystem::Dump(bool flapOut) {
     std::cout << "Extending hopper solenoid" << std::endl;
-    FlapOut();
+    if (flapOut) {
+        FlapOut();
+    } else {
+        FlapIn();
+    }
     m_solenoid.Set(frc::DoubleSolenoid::Value::kReverse);
     std::cout << "Dumping: " << GetState() << std::endl;
 }

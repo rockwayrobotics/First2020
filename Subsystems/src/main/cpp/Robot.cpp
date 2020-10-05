@@ -61,6 +61,7 @@ void Robot::AutonomousInit() {
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Schedule();
   }
+  m_container.EncoderReset();
 }
 
 void Robot::AutonomousPeriodic() {}

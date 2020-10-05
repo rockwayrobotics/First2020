@@ -11,15 +11,15 @@ SpinWheelToColour::SpinWheelToColour(WheelSpinnerSubsystem* wheel, ColourSensorS
 void SpinWheelToColour::Initialize() {
     std::cout << "starting spin" << std::endl;
     m_finished = false;
-    m_wheel->Spin(0.2);
 }
 
 void SpinWheelToColour::Execute() {
     m_colour->Update();
     if (m_colour->colour == m_target) {
         std::cout << "found colour" << std::endl;
-        m_wheel->Spin(0);
         m_finished = true;
+    } else {
+        m_wheel->Spin(0.2);
     }
 }
 

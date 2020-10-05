@@ -31,8 +31,8 @@ namespace RobotMap {
         // pneumatic ports on PCM
         HOPPERFORWARD = 1,
         HOPPERREVERSE = 0,
-        FLAPFORWARD = 6,
-        FLAPREVERSE = 7
+        FLAPFORWARD = 7,
+        FLAPREVERSE = 6
     };
     enum Analog {
         // analog ports on roboRIO

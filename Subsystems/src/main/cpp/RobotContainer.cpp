@@ -43,3 +43,7 @@ void RobotContainer::StartColourSensor() {
 void RobotContainer::StopColourSensor() {
   m_colourSensor.SetActive(false);
 }
+
+void RobotContainer::EncoderReset() {
+  m_drivebase.EncoderReset();
+}

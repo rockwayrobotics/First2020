@@ -61,6 +61,11 @@ bool DrivebaseSubsystem::GetStopped() {
     return m_leftEncoder.GetStopped() && m_rightEncoder.GetStopped();
 }
 
+void DrivebaseSubsystem::EncoderReset() {
+    m_leftEncoder.Reset();
+    m_rightEncoder.Reset();
+}
+
 void DrivebaseSubsystem::Periodic() {
     if (m_usingLR) {
         m_drive1.TankDrive(m_scale * m_l, m_scale * m_r, false);

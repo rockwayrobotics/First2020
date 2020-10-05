@@ -33,7 +33,7 @@ Autonomous::Autonomous(DrivebaseSubsystem* Drbase, HopperSubsystem* hopper) {
         Wait {AutonomousConstants::DumpWait}, //This should be the time it takes for the balls to roll out
         Chargeth {Drbase,
             -AutonomousConstants::BackwardsSpeed,
-            AutonomousConstants::BackwardsDistance,
+            -AutonomousConstants::BackwardsDistance,
             AutonomousConstants::BackwardsTimeout
         } //Goes backward for a distance
     );
