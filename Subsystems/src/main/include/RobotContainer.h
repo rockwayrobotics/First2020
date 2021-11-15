@@ -42,6 +42,7 @@ class RobotContainer {
   void StopColourSensor();
   void Drive(double y, double x);
   void MoveHook(double pow);
+  void EncoderReset();
   
 
  private:

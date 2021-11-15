@@ -9,8 +9,8 @@
 class HopperSubsystem : public frc2::SubsystemBase {
     public:
         HopperSubsystem();
-        void Dump();
-        void Load();
+        void Dump(bool flapOut = true);
+        void Load(bool flapOut = true);
         void Toggle();
         void Off();
         void FlapIn();

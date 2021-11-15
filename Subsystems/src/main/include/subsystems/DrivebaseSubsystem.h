@@ -21,6 +21,7 @@ class DrivebaseSubsystem : public frc2::SubsystemBase {
         bool GetStopped();
         double GetLRate();
         double GetRRate();
+        void EncoderReset();
     private:
         WPI_VictorSPX m_leftMotor1 {RobotMap::CAN::LEFTMOTOR1};
         WPI_VictorSPX m_leftMotor2 {RobotMap::CAN::LEFTMOTOR2};
